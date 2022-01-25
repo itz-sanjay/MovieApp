@@ -1,0 +1,206 @@
+<!--doctype html-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--==Title==================================-->
+<title>
+    <%= movieData.Title %> - Info
+</title>
+<!--Stylesheet(CSS)==========================-->
+<link rel="stylesheet" href="/css/styles.css"/>
+<!--==Fav-icon===============================-->
+<link rel="shortcut icon" href="/images/logo.png"/>
+<!--==Import-poppins-font====================-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<!--==Import-Monoton-Font====================-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+<!--==Using-Font-Awesome======================-->
+<script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--==Scroll-Progress-bar=========================-->
+    <div id="progress">
+        <span id="progress-value"></span>
+    </div>
+    <!--==Navigation===================================-->
+    <nav class="navigation">
+        <!--menu-btn--------------->
+        <input type="checkbox" class="menu-btn" id="menu-btn">
+        <label for="menu-btn" class="menu-icon">
+            <span class="nav-icon"></span>
+        </label>
+        <!--logo------------------->
+        <a href="/home/" class="logo">
+            JUMPING<span>WHEEL</span>
+        </a>
+        <!--menu------------------->
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/home">Entertainment</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+        <!--Search-box------------->
+        <form action="/" method="post" class="search-box">
+            <!--input-->
+            <input type="text" name="searchedMovie" placeholder="Search Movie" class="search-input" required/>
+            <!--btn-->
+            <button type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </nav>
+    <!--nav-end-->
+    <!--==Movie-Banner=========================================-->
+    <section class="movie-banner">
+        <!--==img==================================-->
+        <div class="m-banner-img">
+            <img alt="" src="<%= movieData.Poster %> ">
+        </div>
+        <!--content================================-->
+        <div class="banner-container">
+            <!--title-container*******************----->
+            <div class="title-container">
+                <!--title-top===============-->
+                <div class="title-top">
+                <!--title----->
+                <div class="movie-title">
+                    <h1><%= movieData.Title %></h1>
+                </div>
+                <!--more-about-movie-->
+                <div class="more-about-movie">
+                    <span class="quality"><%= movieData.Type %></span>
+                    <div class="rating">
+                        <%= movieData.imdbRating %> <img alt="imbd" src="/images/IMDb-icon.png">
+                    </div>
+                    <span><%= movieData.Released %></span>
+                    <span><%= movieData.Runtime %></span>
+                </div>
+                <!--language--------->
+                <div class="language">
+                    <span><%= movieData.Language %></span>
+                </div>
+                <div class="otherRating">
+                    <div>
+                        <% if(movieData['Ratings'].length > 1) { %> 
+                        <img alt="rotten-tomato" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Rotten_Tomatoes_logo.svg/1037px-Rotten_Tomatoes_logo.svg.png"> - 
+                        <%= movieData.Ratings[1].Value %></div>
+                        <% } %>
+                    <div>
+                        <% if(movieData['Ratings'].length > 2) { %> 
+                        <img alt="imbd" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Metacritic_Logo.svg/330px-Metacritic_Logo.svg.png"> - 
+                        <%= movieData.Ratings[2].Value %>
+                        <% } %>
+                         
+                    </div>
+                    
+                </div>
+                </div>
+                <!--Title-botttom==========================-->
+                <div class="title-bottom">
+                    <!--category------->
+                    <div class="category">
+                        <strong>Category</strong><br/>
+                        <a href="#"><%= movieData.Genre %></a>
+                    </div>
+                </div>
+            </div>
+            <!--play-btn******************************--->
+            <div class="watch-btn-container">
+                        <a href="https://www.imdb.com/title/<%= movieData.imdbID %>/" class="watch-btn">More Info</a>
+            </div>
+        </div>
+    </section>
+    <!--Banner-end------------->
+    <!--details=====================================-->
+    <section class="movie-details">
+        <strong>Cast</strong>
+        <p><%= movieData.Actors %></p>
+        <strong>Director</strong>
+        <p><%= movieData.Director %></p>
+        <strong>Writers</strong>
+        <p><%= movieData.Writer %></p>
+        <strong>Plot</strong>
+        <p><%= movieData.Plot %></p>
+    </section>
+    <section class="mainOthers">
+        <strong>Others</strong>
+        <!--screenshots-container----------->
+        <div class="others">
+            <span>Awards - </span><%= movieData.Awards %>
+        </div>
+        <div class="others">
+            <span>Country - </span><%= movieData.Country %>
+        </div>
+        <div class="others">
+            <span>BoxOffice - </span><%= movieData.BoxOffice %>
+        </div>
+    </section>
+    <!--==ScreenShots===============================-->
+    <section class="screenshots">
+        <strong>Poster</strong>
+        <!--screenshots-container----------->
+        <div class="screen-s-container">
+            <img alt="" src="<%= movieData.Poster %>">
+        </div>
+    </section>
+    <!--==footer==============================-->
+    <footer>
+        <!--footer-logo--->
+        <a href="/home/" class="logo">
+            JUMPING<span>WHEEL</span>
+        </a>
+        <!--copyright----->
+        <span class="copyright">
+            Copyright 2021 - JUmping Wheel
+        </span>
+    </footer>
+    <!--==jQuery=======================================-->
+    <script src="/Swiper Files/jQuery.js"></script>
+    <script>
+        /*==scroll-progress-bar======================*/
+        let scrollPrecentage = () =>{
+            let scrollProgress = document.getElementById("progress");
+            let progressValue = document.getElementById("progress-value");
+            let pos = document.documentElement.scrollTop;
+            let calcHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrollValue = Math.round(pos * 100 / calcHeight);
+            scrollProgress.style.background = `conic-gradient(#e70634 ${scrollValue}%, #2b2f38 ${scrollValue}%)`;
+        }
+        window.onscroll = scrollPrecentage;
+        window.onload = scrollPrecentage;
+        /*--menu-btn-fixed-when-scroll============*/
+        $(window).scroll(function(){
+            if($(document).scrollTop() > 20){
+                $('.navigation').addClass('fix-icon');
+            }
+            else{
+                $('.navigation').removeClass('fix-icon');
+            }
+        });
+        /*==popup-open==================================*/
+        $(document).on('click','.play-btn a',function(){
+            $('.play').addClass('active-popup');
+        });
+        /*==popup-Close==================================*/
+        $(document).on('click','.close-movie',function(){
+            $('.play').removeClass('active-popup');
+        });
+        /*==auto-play-when-popup-open===================*/
+        $('.play-btn a').click(function(){
+            $('#m-video')[0].play();
+        });
+        /*==Close-video-when-poppup-close==============*/
+        $('.close-movie').click(function(){
+            $('#m-video')[0].pause();
+        });
+      </script>
+</body>
+
+<script src="/app.js"></script>
+</html>
