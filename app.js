@@ -8,6 +8,10 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static("public"));
+
 // set the view engine to ejs
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views/pages/"));
@@ -60,10 +64,6 @@ function getRandom(movieId){
 }
 return movieList;
 };
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(express.static("public"));
 
 app.get("/", function (req, res) {
   res.render("homePage");
